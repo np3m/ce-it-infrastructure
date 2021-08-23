@@ -1,2 +1,2 @@
-128.230.146.0/24 dev ens161 src 128.230.146.15 table mail
-default via 128.230.146.1 dev ens161 table mail
+128.230.21.0/24 dev ens161 src 128.230.21.179 table mail
+default via 128.230.21.1 dev ens161 table mail
