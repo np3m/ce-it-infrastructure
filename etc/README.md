@@ -4,9 +4,9 @@
 
 Ideally, we would use [macvlan networks](https://docs.docker.com/network/macvlan/) within docker to generate virtual interfaces witin a Docker [swarm network](https://neuvector.com/network-security/docker-swarm-container-networking/) that we can assign physical IPs to. However, this needs VETT to enable [promiscuous mode](https://docs.vmware.com/en/VMware-vSphere/6.0/com.vmware.vsphere.security.doc/GUID-92F3AB1F-B4C5-4F25-A010-8820D7250350.html) and allow [forged transmits](https://docs.vmware.com/en/VMware-vSphere/6.0/com.vmware.vsphere.security.doc/GUID-7DC6486F-5400-44DF-8A62-6273798A2F80.html) for the host machine, which is not yet enabled.
 
-Instead, we configure two addition virtial NICs in VSphere for the host machine `ce-services.phy.syr.edu` which are assigned the IP addresses for the relevant services by the campus DHCP server. We then need to:
+Instead, we configure two addition virtial NICs in VSphere for the host machine `np3m-services.phy.syr.edu` which are assigned the IP addresses for the relevant services by the campus DHCP server. We then need to:
 
-To simplify routing, we keep DCC services on a separate virtual host `ce-dcc.phy.syr.edu` until macvlan is working in AVHE.
+To simplify routing, we keep DCC services on a separate virtual host `np3m-dcc.phy.syr.edu` until macvlan is working in AVHE.
 
 ## Configuration
 
@@ -19,9 +19,9 @@ To allow the containers that talk over the physical NICs to route properly, the 
 
 | Host name | Host IP | Interface | Route Number | Route Name | Private Subnet |
 |-----------|---------|-----------|--------------|------------|----------------|
-| ce-roster.phy.syr.edu | 128.230.146.12 | ens224 | roster | 100 | 192.168.100.0/24 |
-| ce-mail.phy.syr.edu | 128.230.146.15 | ens161 | mail | 102 | 192.168.102.0/24 |
-| ce-services.phy.syr.edu | 128.230.146.17 | ens160 | services | 103 | N/A |
+| np3m-roster.phy.syr.edu | 128.230.21.178 | ens224 | roster | 100 | 192.168.100.0/24 |
+| np3m-mail.phy.syr.edu | 128.230.21.179 | ens161 | mail | 102 | 192.168.102.0/24 |
+| ce-services.phy.syr.edu | 128.230.21.177 | ens160 | services | 103 | N/A |
 
 The following addresses are assigned to the following containers with outward facing services:
 
@@ -37,20 +37,20 @@ Note that since the Let's Encrypt and Apache containers map to the same host IP,
 
 ## Installation
 
-We configure the above on the host by checking out the files in [etc/](https://github.com/cosmic-explorer/ce-it-infrastructure/edit/master/etc) of this repository on top of the host machine's filesystem.
+We configure the above on the host by checking out the files in [etc/](https://github.com/np3m/ce-it-infrastructure/edit/master/etc) of this repository on top of the host machine's filesystem.
 
-On the machine `ce-services.phy.syr.edu`, first install the required tools
+On the machine `np3m-services.phy.syr.edu`, first install the required tools
 ```sh
 yum -y install net-tools bind-utils NetworkManager-config-routing-rules
 systemctl enable NetworkManager-dispatcher.service
-start NetworkManager-dispatcher.service
+systemctl start NetworkManager-dispatcher.service
 ```
 
 Then install these networking scripts by running the commands
 ```sh
 cd /
 git init
-git remote add origin https://github.com/cosmic-explorer/ce-it-infrastructure.git
+git remote add origin https://github.com/np3m/ce-it-infrastructure.git
 git config core.sparseCheckout true
 git fetch
 ```
