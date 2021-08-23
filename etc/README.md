@@ -21,7 +21,7 @@ To allow the containers that talk over the physical NICs to route properly, the 
 |-----------|---------|-----------|--------------|------------|----------------|
 | np3m-roster.phy.syr.edu | 128.230.21.178 | ens224 | roster | 100 | 192.168.100.0/24 |
 | np3m-mail.phy.syr.edu | 128.230.21.179 | ens161 | mail | 102 | 192.168.102.0/24 |
-| ce-services.phy.syr.edu | 128.230.21.177 | ens160 | services | 103 | N/A |
+| np3m-services.phy.syr.edu | 128.230.21.177 | ens160 | services | 103 | N/A |
 
 The following addresses are assigned to the following containers with outward facing services:
 
