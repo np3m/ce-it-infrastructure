@@ -1,2 +1,2 @@
-128.230.146.0/24 dev ens224 src 128.230.146.12 table roster
-default via 128.230.146.1 dev ens224 table roster
+128.230.21.0/24 dev ens224 src 128.230.21.178 table roster
+default via 128.230.21.1 dev ens224 table roster
