@@ -59,11 +59,15 @@ These services should be federated as [Shibboleth](https://www.internet2.edu/pro
 
 The [sugwg/apache-shibd](https://github.com/sugwg/apache-shibd) Docker container can be used to create the Shibboleth metadata for federation to incommon. To do this, first obtain InCommon host certificates for each interface.
 
-To create the Shibboleth metadata, run the commands below for each interface. First, make a directory for each interface
+To create the Shibboleth metadata, run the commands below for each interface. First, make a directory for each interface. On `np3m-services` run
 ```
-mkdir -p ce-mail ce-roster ce-dcc
+mkdir -p np3m-mail np3m-roster
 ```
-and perform in the apache shibd configuration step in each directory.
+and on `np3m-dcc` run
+```
+mkdir -p np3m-dcc
+```
+and perform in the apache shibd configuration step in each directory on the two machines.
 
 ### COmanage
 
@@ -74,6 +78,7 @@ in variables with a common string (we use `name`) with the suffixes `_GIVEN` and
 This set up adds the `<Attribute Resolver>` elements needed to create these.
 
 ```sh
+cd np3m-roster
 git clone https://github.com/sugwg/apache-shibd.git
 cd apache-shibd/certificates
 ./keygen.sh
@@ -127,12 +132,13 @@ docker run --name=apache-shibd-roster --rm -d \
 ### DCC
 
 ```sh
+cd np3m-dcc
 git clone https://github.com/sugwg/apache-shibd.git
 cd apache-shibd/certificates
 ./keygen.sh
 cd ..
-cp /path/to/certs/ce-roster_phy_syr_edu_cert.cer certificates/hostcert.pem
-cp /path/to/certs/ce-roster.phy.syr.edu.key certificates/hostkey.pem
+cp  /root/certificates/shibboleth/dcc_cp-cert.pem certificates/hostcert.pem
+cp  /root/certificates/shibboleth/dcc_cp-cert.pem certificates/hostkey.pem
 cat >> assertion-consumer-service.xml <<EOF
 	       <EndpointBase>https://dcc.cosmicexplorer.org/Shibboleth.sso</EndpointBase>
            <EndpointBase>https://ce-dcc.phy.syr.edu/Shibboleth.sso</EndpointBase>
@@ -142,18 +148,18 @@ cat >> provider-metadata.xml <<EOF
         backingFilePath="/var/log/shibboleth/sugwg-orcid-metadata.xml" reloadInterval="82800" legacyOrgNames="true"/>
 EOF
 docker build \
-    --build-arg SHIBBOLETH_SP_ENTITY_ID=http://ce-dcc.phy.syr.edu/shibboleth-sp \
-    --build-arg SHIBBOLETH_SP_SAMLDS_URL=https://dcc.cosmicexplorer.org/shibboleth-ds/index.html \
-    --build-arg SP_MD_SERVICENAME="Syracuse University Gravitational Wave Group - CE DCC" \
+    --build-arg SHIBBOLETH_SP_ENTITY_ID=http://np3m-dcc.phy.syr.edu/shibboleth-sp \
+    --build-arg SHIBBOLETH_SP_SAMLDS_URL=https://dcc.np3m.org/shibboleth-ds/index.html \
+    --build-arg SP_MD_SERVICENAME="Syracuse University Gravitational Wave Group - NP3M DCC" \
     --build-arg SP_MD_SERVICEDESCRIPTION="Cosmic Explorer DCC" \
-    --build-arg SP_MDUI_DISPLAYNAME="Syracuse University Gravitational Wave Group - CE DCC" \
-    --build-arg SP_MDUI_DESCRIPTION="Cosmic Explorer DCC" \
-    --build-arg SP_MDUI_INFORMATIONURL="https://cosmicexplorer.org" \
-    --rm -t cosmicexplorer/apache-shibd-dcc .
+    --build-arg SP_MDUI_DISPLAYNAME="Syracuse University Gravitational Wave Group - NP3M DCC" \
+    --build-arg SP_MDUI_DESCRIPTION="NP3M DCC" \
+    --build-arg SP_MDUI_INFORMATIONURL="https://np3m.org" \
+    --rm -t np3m/apache-shibd-dcc .
     
 docker network create --attachable \
     --opt 'com.docker.network.bridge.name=bridge-dcc' \
-    --opt 'com.docker.network.bridge.host_binding_ipv4'='128.230.146.13' \
+    --opt 'com.docker.network.bridge.host_binding_ipv4'='128.230.21.176' \
     --driver=bridge \
     --subnet=192.168.101.0/24 \
     --ip-range=192.168.101.0/24 \
@@ -163,11 +169,11 @@ docker network create --attachable \
 docker run --name=apache-shibd-dcc --rm -d \
     --network=bridge-dcc \
     --ip=192.168.101.2 \
-    --hostname ce-dcc.phy.syr.edu \
+    --hostname np3m-dcc.phy.syr.edu \
     --domainname phy.syr.edu \
     -v `pwd`/shibboleth:/mnt \
-    -p 128.230.146.13:443:443 \
-    cosmicexplorer/apache-shibd-dcc:latest
+    -p 128.230.21.176:443:443 \
+    np3m/apache-shibd-dcc:latest
 ```
 
 ### Mailman
