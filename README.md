@@ -1,4 +1,4 @@
-# Cosmic Explorer IT Infrastructure
+# NP3M IT Infrastructure
 
 This repository contains the resources and documentation necessary to set up
 the collaboration cyberinfrastructure used by Cosmic Explorer. We deploy four
