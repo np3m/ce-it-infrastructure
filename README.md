@@ -83,8 +83,8 @@ git clone https://github.com/sugwg/apache-shibd.git
 cd apache-shibd/certificates
 ./keygen.sh
 cd ..
-cp /path/to/certs/ce-roster_phy_syr_edu_cert.cer certificates/hostcert.pem
-cp /path/to/certs/ce-roster.phy.syr.edu.key certificates/hostkey.pem
+cp /root/certificates/shibboleth/roster_cp-cert.pem certificates/hostcert.pem
+cp /root/certificates/shibboleth/roster_cp-key.pem certificates/hostkey.pem
 cat >> assertion-consumer-service.xml <<EOF
 	       <EndpointBase>https://roster.cosmicexplorer.org/Shibboleth.sso</EndpointBase>
            <EndpointBase>https://ce-roster.phy.syr.edu/Shibboleth.sso</EndpointBase>
@@ -101,18 +101,18 @@ cat >> provider-metadata.xml <<EOF
         </AttributeResolver>
 EOF
 docker build \
-    --build-arg SHIBBOLETH_SP_ENTITY_ID=http://ce-roster.phy.syr.edu/shibboleth-sp \
-    --build-arg SHIBBOLETH_SP_SAMLDS_URL=https://dcc.cosmicexplorer.org/shibboleth-ds/index.html \
-    --build-arg SP_MD_SERVICENAME="Syracuse University Gravitational Wave Group - CE COmanage" \
-    --build-arg SP_MD_SERVICEDESCRIPTION="Cosmic Explorer COmanage Roster" \
-    --build-arg SP_MDUI_DISPLAYNAME="Syracuse University Gravitational Wave Group - CE COmanage" \
-    --build-arg SP_MDUI_DESCRIPTION="Cosmic Explorer COmanage Roster" \
-    --build-arg SP_MDUI_INFORMATIONURL="https://cosmicexplorer.org" \
-    --rm -t cosmicexplorer/apache-shibd-roster .
+    --build-arg SHIBBOLETH_SP_ENTITY_ID=http://np3m-roster.phy.syr.edu/shibboleth-sp \
+    --build-arg SHIBBOLETH_SP_SAMLDS_URL=https://dcc.np3m.org/shibboleth-ds/index.html \
+    --build-arg SP_MD_SERVICENAME="Syracuse University Gravitational Wave Group - NP3M COmanage" \
+    --build-arg SP_MD_SERVICEDESCRIPTION="NP3M COmanage Roster" \
+    --build-arg SP_MDUI_DISPLAYNAME="Syracuse University Gravitational Wave Group - NP3M COmanage" \
+    --build-arg SP_MDUI_DESCRIPTION="NP3M COmanage Roster" \
+    --build-arg SP_MDUI_INFORMATIONURL="https://np3m.org" \
+    --rm -t np3m/apache-shibd-roster .
     
 docker network create --attachable \
     --opt 'com.docker.network.bridge.name=bridge-roster' \
-    --opt 'com.docker.network.bridge.host_binding_ipv4'='128.230.146.12' \
+    --opt 'com.docker.network.bridge.host_binding_ipv4'='128.230.21.178' \
     --driver=bridge \
     --subnet=192.168.100.0/24 \
     --ip-range=192.168.100.0/24 \
@@ -122,11 +122,11 @@ docker network create --attachable \
 docker run --name=apache-shibd-roster --rm -d \
     --network=bridge-roster \
     --ip=192.168.100.2 \
-    --hostname ce-roster.phy.syr.edu \
+    --hostname np3m-roster \
     --domainname phy.syr.edu \
     -v `pwd`/shibboleth:/mnt \
-    -p 128.230.146.12:443:443 \
-    cosmicexplorer/apache-shibd-roster:latest
+    -p 128.230.21.178:443:443 \
+    np3m/apache-shibd-roster:latest
 ```
 
 ### DCC
@@ -138,7 +138,7 @@ cd apache-shibd/certificates
 ./keygen.sh
 cd ..
 cp  /root/certificates/shibboleth/dcc_cp-cert.pem certificates/hostcert.pem
-cp  /root/certificates/shibboleth/dcc_cp-cert.pem certificates/hostkey.pem
+cp  /root/certificates/shibboleth/dcc_cp-key.pem certificates/hostkey.pem
 cat >> assertion-consumer-service.xml <<EOF
 	       <EndpointBase>https://dcc.cosmicexplorer.org/Shibboleth.sso</EndpointBase>
            <EndpointBase>https://ce-dcc.phy.syr.edu/Shibboleth.sso</EndpointBase>
@@ -151,7 +151,7 @@ docker build \
     --build-arg SHIBBOLETH_SP_ENTITY_ID=http://np3m-dcc.phy.syr.edu/shibboleth-sp \
     --build-arg SHIBBOLETH_SP_SAMLDS_URL=https://dcc.np3m.org/shibboleth-ds/index.html \
     --build-arg SP_MD_SERVICENAME="Syracuse University Gravitational Wave Group - NP3M DCC" \
-    --build-arg SP_MD_SERVICEDESCRIPTION="Cosmic Explorer DCC" \
+    --build-arg SP_MD_SERVICEDESCRIPTION="NP3M DCC" \
     --build-arg SP_MDUI_DISPLAYNAME="Syracuse University Gravitational Wave Group - NP3M DCC" \
     --build-arg SP_MDUI_DESCRIPTION="NP3M DCC" \
     --build-arg SP_MDUI_INFORMATIONURL="https://np3m.org" \
@@ -169,7 +169,7 @@ docker network create --attachable \
 docker run --name=apache-shibd-dcc --rm -d \
     --network=bridge-dcc \
     --ip=192.168.101.2 \
-    --hostname np3m-dcc.phy.syr.edu \
+    --hostname np3m-dcc \
     --domainname phy.syr.edu \
     -v `pwd`/shibboleth:/mnt \
     -p 128.230.21.176:443:443 \
@@ -183,8 +183,8 @@ git clone https://github.com/sugwg/apache-shibd.git
 cd apache-shibd/certificates
 ./keygen.sh
 cd ..
-cp /path/to/certs/ce-roster_phy_syr_edu_cert.cer certificates/hostcert.pem
-cp /path/to/certs/ce-roster.phy.syr.edu.key certificates/hostkey.pem
+cp /root/certificates/shibboleth/mail_cp-cert.pem certificates/hostcert.pem
+cp /root/certificates/shibboleth/mail_cp-key.pem certificates/hostkey.pem
 cat >> assertion-consumer-service.xml <<EOF
            <EndpointBase>https://mail.cosmicexplorer.org/Shibboleth.sso</EndpointBase>
            <EndpointBase>https://ce-mail.phy.syr.edu/Shibboleth.sso</EndpointBase>
@@ -194,18 +194,18 @@ cat >> provider-metadata.xml <<EOF
         backingFilePath="/var/log/shibboleth/sugwg-orcid-metadata.xml" reloadInterval="82800" legacyOrgNames="true"/>
 EOF
 docker build \
-    --build-arg SHIBBOLETH_SP_ENTITY_ID=http://ce-mailman.phy.syr.edu/shibboleth-sp \
-    --build-arg SHIBBOLETH_SP_SAMLDS_URL=https://dcc.cosmicexplorer.org/shibboleth-ds/index.html \
-    --build-arg SP_MD_SERVICENAME="Syracuse University Gravitational Wave Group - CE Mailman" \
-    --build-arg SP_MD_SERVICEDESCRIPTION="Cosmic Explorer Mailman Server" \
-    --build-arg SP_MDUI_DISPLAYNAME="Syracuse University Gravitational Wave Group - CE Mailman" \
-    --build-arg SP_MDUI_DESCRIPTION="Cosmic Explorer Mailman Server" \
-    --build-arg SP_MDUI_INFORMATIONURL="https://cosmicexplorer.org" \
-    --rm -t cosmicexplorer/apache-shibd-mail .
+    --build-arg SHIBBOLETH_SP_ENTITY_ID=http://np3m-mail.phy.syr.edu/shibboleth-sp \
+    --build-arg SHIBBOLETH_SP_SAMLDS_URL=https://dcc.np3m.org/shibboleth-ds/index.html \
+    --build-arg SP_MD_SERVICENAME="Syracuse University Gravitational Wave Group - NP3M Mailman" \
+    --build-arg SP_MD_SERVICEDESCRIPTION="NP3M Mailman Server" \
+    --build-arg SP_MDUI_DISPLAYNAME="Syracuse University Gravitational Wave Group - NP3M Mailman" \
+    --build-arg SP_MDUI_DESCRIPTION="NP3M Mailman Server" \
+    --build-arg SP_MDUI_INFORMATIONURL="https://np3m.org" \
+    --rm -t np3m/apache-shibd-mail .
     
 docker network create --attachable \
     --opt 'com.docker.network.bridge.name=bridge-mail' \
-    --opt 'com.docker.network.bridge.host_binding_ipv4'='128.230.146.15' \
+    --opt 'com.docker.network.bridge.host_binding_ipv4'='128.230.21.179' \
     --driver=bridge \
     --subnet=192.168.102.0/24 \
     --ip-range=192.168.102.0/24 \
@@ -215,11 +215,11 @@ docker network create --attachable \
 docker run --name=apache-shibd-mail --rm -d \
     --network=bridge-mail \
     --ip=192.168.102.2 \
-    --hostname ce-mail.phy.syr.edu \
+    --hostname np3m-mail \
     --domainname phy.syr.edu \
     -v `pwd`/shibboleth:/mnt \
-    -p 128.230.146.15:443:443 \
-    cosmicexplorer/apache-shibd-mail:latest
+    -p 128.230.21.179:443:443 \
+    np3m/apache-shibd-mail:latest
 ```
 
 ### Download Metadata
@@ -236,5 +236,10 @@ cp shibboleth/* /etc/shibboleth
 
 Finally, shut down the Apache container with
 ```sh
-docker stop apache-shibd-roster apache-shibd-dcc apache-shibd-mail
+docker stop apache-shibd-roster apache-shibd-mail
 ```
+on np3m-services and
+```sh
+docker stop apache-shibd-dcc
+```
+on np3m-dcc.
