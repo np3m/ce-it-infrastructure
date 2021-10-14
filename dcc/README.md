@@ -1,6 +1,6 @@
-# Cosmic Explorer Document Control Center
+# NP3M Document Control Center
 
-Docker stack for running the Cosmic Explorer DCC.
+Docker stack for running the NP3M DCC.
 
 The production stack depends Docker images for:
  - The DCC itself, which is created from `dcc-syr-disk0.qcow2` by `bootstrap-dcc.sh`
