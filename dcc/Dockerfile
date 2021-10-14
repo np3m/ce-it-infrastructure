@@ -121,7 +121,7 @@ RUN curl http://download.opensuse.org/repositories/security://shibboleth/CentOS_
 \\\n\
 <p>People who are not members of NP3M can <a href="https://dcc.np3m.org/cgi-bin/DocDB/ListBy?.submit=Changes&maxdocs=50&days=180">view the most recent</a> or <a href="https://dcc.np3m.org/cgi-bin/DocDB/DocumentDatabase">search for</a> public documents in the NP3M Document Control Center.</p>\\\n\
 <p>Information about NP3M is available on the <a href="https://np3m.org">NP3M web site.</a>\\\n\
-
+\\\n\
 <h2>People joining the NP3M (and existing members) should select an identity provider to login</h2>\\\n\
 \\\n\
 <p>The first time that you log in, you should pick from the list or enter an or organization name. Your previous choice(s) will be suggested on future visits, or you can select a different provider from the list below. The U.S. indentity providers listed below are those that federate with <a href="https://incommon.org/federation/research-scholarship-adopters/">InCommon Research and Scholarship</a> service. International identity providers are federated through <a href="https://edugain.org/">eduGAIN.</a></p>\\\n\
