@@ -35,7 +35,7 @@ services:
             replicas: 1
 
     rest-api:
-        image: cosmicexplorer/rest-dcc:1.2.1
+        image: np3m/rest-dcc:1.2.1
         init: true
         secrets:
             - mysql_docdbrw_passwd
@@ -70,7 +70,7 @@ services:
             replicas: 1
 
     oauth-consent:
-        image: cosmicexplorer/hydra-login-consent-node:1.0.9
+        image: np3m/hydra-login-consent-node:1.0.9
         environment:
             - HYDRA_ADMIN_URL=http://oauth-server:4445
             - MOCK_TLS_TERMINATION=y
@@ -82,7 +82,7 @@ services:
             replicas: 1
 
     dcc:
-        image: cosmicexplorer/dcc:3.3.0
+        image: np3m/dcc:3.3.0
         volumes:
             - ${STORAGE_PATH}/etc/shibboleth/shibboleth2.xml:/etc/shibboleth/shibboleth2.xml
             - ${STORAGE_PATH}/etc/shibboleth/attribute-map.xml:/etc/shibboleth/attribute-map.xml
