@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     comanage-registry:
-        image: cosmicexplorer/comanage-registry:${COMANAGE_REGISTRY_VERSION}-shibboleth-sp-${COMANAGE_REGISTRY_SHIBBOLETH_SP_IMAGE_VERSION}
+        image: np3m/comanage-registry:${COMANAGE_REGISTRY_VERSION}-shibboleth-sp-${COMANAGE_REGISTRY_SHIBBOLETH_SP_IMAGE_VERSION}
         volumes:
             - ${STORAGE_PATH}/srv/comanage-registry/local:/srv/comanage-registry/local
             - ${STORAGE_PATH}/etc/shibboleth/shibboleth2.xml:/etc/shibboleth/shibboleth2.xml
@@ -17,7 +17,7 @@ services:
             - COMANAGE_REGISTRY_DATASOURCE=Database/Mysql
             - COMANAGE_REGISTRY_DATABASE_USER_PASSWORD_FILE=/run/secrets/comanage_registry_database_user_password
             - COMANAGE_REGISTRY_VIRTUAL_HOST_FQDN=${COMANAGE_REGISTRY_VIRTUAL_HOST_FQDN}
-            - COMANAGE_REGISTRY_EMAIL_FROM=array('comanage-do-not-reply@cosmicexplorer.org' => 'Cosmic Explorer COManage Registry')
+            - COMANAGE_REGISTRY_EMAIL_FROM=array('comanage-do-not-reply@np3m.org' => 'NP3M COManage Registry')
             - COMANAGE_REGISTRY_EMAIL_TRANSPORT=Smtp
             - COMANAGE_REGISTRY_EMAIL_HOST=smtp-relay.syr.edu
             - COMANAGE_REGISTRY_EMAIL_PORT=25
@@ -35,7 +35,7 @@ services:
                 ipv4_address: 192.168.100.3
             roster-net: {}
         ports:
-            - "128.230.146.12:443:443"
+            - "128.230.21.178:443:443"
         restart: always
 
 networks:
