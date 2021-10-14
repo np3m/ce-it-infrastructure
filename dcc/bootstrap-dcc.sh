@@ -30,7 +30,7 @@ fi
 
 docker swarm leave --force &>/dev/null || true
 
-docker image inspect cosmicexplorer/dcc-base:3.3.0 &>/dev/null
+docker image inspect np3m/dcc-base:3.3.0 &>/dev/null
 RET=${?}
 
 trap 'trap - ERR; kill -INT $$' ERR
@@ -41,7 +41,7 @@ if [ ${RET} -eq 0 ] ; then
   echo "Using existing dcc-base docker image"
 else
   echo "Importing dcc-base docker image"
-  virt-tar-out -a dcc-syr-disk0.qcow2 / - | docker import - cosmicexplorer/dcc-base:3.3.0
+  virt-tar-out -a dcc-syr-disk0.qcow2 / - | docker import - np3m/dcc-base:3.3.0
 fi
 
 export CERT_DIR=$(mktemp -d)
@@ -64,8 +64,8 @@ sudo cp inc-md-cert.pem ${STORAGE_PATH}/etc/shibboleth/inc-md-cert.pem
 rm -f inc-md-cert.pem
 sudo /bin/chmod 644 ${STORAGE_PATH}/etc/shibboleth/*
 
-docker build --build-arg=DCC_INSTANCE=${DCC_INSTANCE} --rm -t cosmicexplorer/dcc:3.3.0 .
-docker build -f Dockerfile.bootstrap --rm -t cosmicexplorer/dcc-bootstrap:3.3.0 .
+docker build --build-arg=DCC_INSTANCE=${DCC_INSTANCE} --rm -t np3m/dcc:3.3.0 .
+docker build -f Dockerfile.bootstrap --rm -t np3m/dcc-bootstrap:3.3.0 .
 
 sudo mkdir -p ${STORAGE_PATH}/usr1/www/html/DocDB
 sudo mkdir -p ${STORAGE_PATH}/usr1/www/html/public
@@ -91,7 +91,7 @@ docker run --rm --network dcc-bootstrap-network \
 
 docker run -it --rm \
   --network dcc-bootstrap-network \
-  cosmicexplorer/wait-port:0.2.6 \
+  np3m/wait-port:0.2.6 \
   wait-port hydra-database:5432
 
 export DSN="postgres://hydra:${HYDRA_PASSWD}@hydra-database:5432/hydra?sslmode=disable"
@@ -113,12 +113,12 @@ docker run -d --rm \
 
 docker run -it --rm \
   --network dcc-bootstrap-network \
-  cosmicexplorer/wait-port:0.2.6 \
+  np3m/wait-port:0.2.6 \
   wait-port hydra-bootstrap-server:4445
 
 docker run -it --rm \
   --network dcc-bootstrap-network \
-  cosmicexplorer/wait-port:0.2.6 \
+  np3m/wait-port:0.2.6 \
   wait-port hydra-bootstrap-server:4444
 
 docker run --rm -it \
