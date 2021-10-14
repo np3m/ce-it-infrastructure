@@ -24,7 +24,7 @@ The repository provides two tools used by the services:
 
 The infrastructure also relies on the following repositories hosted by the [cosmic-explorer](https://github.com/cosmic-explorer) GitHub organization:
 
- * A fork of [COmanage Regustry](https://github.com/cosmic-explorer/comanage-registry) that contains the source for the fixed GitHub provisioner and the DCC provisioner until these are merged into the main COmanage repository.
+ * A fork of [COmanage Registry](https://github.com/cosmic-explorer/comanage-registry) that contains the source for the fixed GitHub provisioner and the DCC provisioner until these are merged into the main COmanage repository.
  * A fork of the [Hydra Login and Consent Node](https://github.com/cosmic-explorer/hydra-login-consent-node) used by the DCC to perform OAuth2 delegation of credentials to COmanage. This is essentially the same as the original version, but removes the `foo@bar.com` login as authentication is managed by Apache Shibboleth which reverse proxies to the consent node.
  * A fork of [the COmanage registry docker containers](https://github.com/cosmic-explorer/comanage-registry-docker) to allow us to make any CE specific changes. Currently this is even with the upstream repository as no patches are needed.
 
@@ -86,8 +86,8 @@ cd ..
 cp /root/certificates/shibboleth/roster_cp-cert.pem certificates/hostcert.pem
 cp /root/certificates/shibboleth/roster_cp-key.pem certificates/hostkey.pem
 cat >> assertion-consumer-service.xml <<EOF
-	       <EndpointBase>https://roster.cosmicexplorer.org/Shibboleth.sso</EndpointBase>
-           <EndpointBase>https://ce-roster.phy.syr.edu/Shibboleth.sso</EndpointBase>
+	       <EndpointBase>https://roster.np3m.org/Shibboleth.sso</EndpointBase>
+           <EndpointBase>https://np3m-roster.phy.syr.edu/Shibboleth.sso</EndpointBase>
 EOF
 cat >> provider-metadata.xml <<EOF
 	<MetadataProvider type="XML" url="https://sugwg-ds.phy.syr.edu/sugwg-orcid-metadata.xml"
@@ -140,8 +140,8 @@ cd ..
 cp  /root/certificates/shibboleth/dcc_cp-cert.pem certificates/hostcert.pem
 cp  /root/certificates/shibboleth/dcc_cp-key.pem certificates/hostkey.pem
 cat >> assertion-consumer-service.xml <<EOF
-	       <EndpointBase>https://dcc.cosmicexplorer.org/Shibboleth.sso</EndpointBase>
-           <EndpointBase>https://ce-dcc.phy.syr.edu/Shibboleth.sso</EndpointBase>
+	       <EndpointBase>https://dcc.np3m.org/Shibboleth.sso</EndpointBase>
+           <EndpointBase>https://np3m-dcc.phy.syr.edu/Shibboleth.sso</EndpointBase>
 EOF
 cat >> provider-metadata.xml <<EOF
 	<MetadataProvider type="XML" url="https://sugwg-ds.phy.syr.edu/sugwg-orcid-metadata.xml"
@@ -186,8 +186,8 @@ cd ..
 cp /root/certificates/shibboleth/mail_cp-cert.pem certificates/hostcert.pem
 cp /root/certificates/shibboleth/mail_cp-key.pem certificates/hostkey.pem
 cat >> assertion-consumer-service.xml <<EOF
-           <EndpointBase>https://mail.cosmicexplorer.org/Shibboleth.sso</EndpointBase>
-           <EndpointBase>https://ce-mail.phy.syr.edu/Shibboleth.sso</EndpointBase>
+           <EndpointBase>https://mail.np3m.org/Shibboleth.sso</EndpointBase>
+           <EndpointBase>https://np3m-mail.phy.syr.edu/Shibboleth.sso</EndpointBase>
 EOF
 cat >> provider-metadata.xml <<EOF
 	<MetadataProvider type="XML" url="https://sugwg-ds.phy.syr.edu/sugwg-orcid-metadata.xml"
