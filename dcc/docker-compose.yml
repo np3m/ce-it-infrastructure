@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   dcc-bootstrap:
-    image: cosmicexplorer/dcc-bootstrap:3.3.0
+    image: np3m/dcc-bootstrap:3.3.0
     privileged: true
     cap_add:
       - SYS_ADMIN
@@ -20,7 +20,7 @@ services:
       - ${STORAGE_PATH}/var/lib/mysql:/var/lib/mysql
       - ${STORAGE_PATH}/usr2/GLIMPSE:/usr2/GLIMPSE
     ports:
-      - "128.230.146.13:443:443"
+      - "128.230.21.176:443:443"
     secrets:
       - shibboleth_sp_encrypt_cert
       - shibboleth_sp_encrypt_privkey
