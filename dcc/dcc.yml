@@ -70,7 +70,7 @@ services:
             replicas: 1
 
     oauth-consent:
-        image: np3m/hydra-login-consent-node:1.0.9
+        image: cosmicexplorer/hydra-login-consent-node:1.0.9
         environment:
             - HYDRA_ADMIN_URL=http://oauth-server:4445
             - MOCK_TLS_TERMINATION=y
