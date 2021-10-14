@@ -1,8 +1,8 @@
-# Cosmic Explorer COmanage Registry
+# NP3M COmanage Registry
 
 These instructions are a guide for setting up the [COmanage
-registry](https://spaces.at.internet2.edu/display/COmanage/) for the Cosmic
-Explorer Consortium. They are not intended to be an exhausive guide to
+registry](https://spaces.at.internet2.edu/display/COmanage/) for NP3M. 
+They are not intended to be an exhausive guide to
 COmanage, and assume that the user is familiar with the [COmanage registry
 data model.](https://spaces.at.internet2.edu/display/COmanage/Registry+Data+Model)
 
