@@ -10,7 +10,7 @@ services:
             - POSTFIX_MYHOSTNAME=${POSTFIX_MAILNAME}
             - POSTFIX_MYNETWORKS=${POSTFIX_MYNETWORKS}
         ports:
-            - "128.230.146.15:25:25"
+            - "128.230.21.179:25:25"
         networks:
             mailman-bridge:
                 ipv4_address: 192.168.102.3
