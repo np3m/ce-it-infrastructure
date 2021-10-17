@@ -18,7 +18,7 @@ services:
             mailman-bridge:
                 ipv4_address: 192.168.102.2
         ports:
-            - "128.230.146.15:80:80"
+            - "128.230.21.179:80:80"
         restart: always
 
 networks:
@@ -30,5 +30,5 @@ networks:
                 - subnet: 192.168.102.0/24
         driver_opts:
             com.docker.network.bridge.name: "mailman-bridge"
-            com.docker.network.bridge.host_binding_ipv4: "128.230.146.15"
+            com.docker.network.bridge.host_binding_ipv4: "128.230.21.179"
             
