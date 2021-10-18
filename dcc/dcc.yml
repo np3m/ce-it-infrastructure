@@ -62,7 +62,9 @@ services:
             - URLS_CONSENT=https://${DCC_INSTANCE}/consent
             - URLS_LOGIN=https://${DCC_INSTANCE}/login
             - LOG_LEVEL=debug
-            - HTTPS_ALLOW_TERMINATION_FROM=172.30.101.0/24
+            - SERVE_ADMIN_TLS_ALLOW_TERMINATION_FROM=172.30.101.0/24
+            - SERVE_PUBLIC_TLS_ALLOW_TERMINATION_FROM=172.30.101.0/24
+            - TTL_REFRESH_TOKEN=-1
         networks:
             - dcc-net
         command: "serve all"
