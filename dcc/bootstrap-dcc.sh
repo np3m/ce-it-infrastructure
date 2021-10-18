@@ -98,7 +98,7 @@ export DSN="postgres://hydra:${HYDRA_PASSWD}@hydra-database:5432/hydra?sslmode=d
 
 docker run -it --rm \
   --network dcc-bootstrap-network \
-  oryd/hydra:v1.0.8 \
+  oryd/hydra:v1.10.6 \
   migrate sql --yes $DSN
 
 docker run -d --rm \
@@ -109,7 +109,7 @@ docker run -d --rm \
   -e URLS_SELF_ISSUER=https://${DCC_INSTANCE}/oauth/ \
   -e URLS_CONSENT=https://${DCC_INSTANCE}/consent \
   -e URLS_LOGIN=https://${DCC_INSTANCE}/login \
-  oryd/hydra:v1.0.8 serve all --dangerous-force-http
+  oryd/hydra:v1.10.6 serve all --dangerous-force-http
 
 docker run -it --rm \
   --network dcc-bootstrap-network \
@@ -123,7 +123,7 @@ docker run -it --rm \
 
 docker run --rm -it \
   --network dcc-bootstrap-network \
-  oryd/hydra:v1.0.8 \
+  oryd/hydra:v1.10.6 \
   clients create \
     --endpoint http://hydra-bootstrap-server:4445 \
     --callbacks https://${DCC_INSTANCE}/rest-dcc/callback \
