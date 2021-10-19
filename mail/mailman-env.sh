@@ -19,7 +19,7 @@ export POSTFIX_RELAYHOST="smtp-relay.syr.edu"
 # temporary storage of secrets until we have macvlan
 echo "${HYPERKITTY_API_KEY}" > ./hyperkitty_api_key.txt
 echo "${POSTGRESS_PASSWORD}" > ./postgres_password.txt
-echo "postgres://mailman:${POSTGRESS_PASSWORD}@database/mailmandb" > ./mailman_database_url.txt
+echo "postgresql://mailman:${POSTGRESS_PASSWORD}@database/mailmandb" > ./mailman_database_url.txt
 echo "${MAILMAN_REST_PASSWORD}" > ./mailman_rest_password.txt
 echo "${MAILMAN_WEB_SECRET_KEY}" > ./mailman_web_secret_key.txt
 
