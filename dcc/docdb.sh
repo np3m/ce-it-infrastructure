@@ -14,7 +14,10 @@ INSERT INTO \`SecurityGroup\` VALUES(2, 'CO:admins', 'Administrators', CURRENT_T
 INSERT INTO \`SecurityGroup\` VALUES(4, 'NP3MPIs', 'NP3M PIs and CoPIs', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
 INSERT INTO \`SecurityGroup\` VALUES(5, 'NP3M', 'NP3M Members', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
 INSERT INTO \`SecurityGroup\` VALUES(6, 'NSF', 'NP3M NSF Program Officers', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
-INSERT INTO \`SecurityGroup\` VALUES(7, 'Advisory', 'NP3M Advisory Committee', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
+INSERT INTO \`SecurityGroup\` VALUES(7, 'NP3MAdvisoryBoard', 'NP3M Advisory Committee', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
+INSERT INTO \`SecurityGroup\` VALUES(8, 'NP3MSIs', 'NP3M Senior Investigators', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
+INSERT INTO \`SecurityGroup\` VALUES(9, 'NP3MCollaborators', 'NP3M Collaborators', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
+INSERT INTO \`SecurityGroup\` VALUES(10, 'NP3MPostdocs', 'NP3M Postdocs', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
 DELETE FROM \`GroupHierarchy\`;
 INSERT INTO \`GroupHierarchy\` VALUES(1, 101, 100, CURRENT_TIMESTAMP);
 INSERT INTO \`GroupHierarchy\` VALUES(2, 102, 100, CURRENT_TIMESTAMP);
