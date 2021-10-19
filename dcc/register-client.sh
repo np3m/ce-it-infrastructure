@@ -60,7 +60,7 @@ client_secret=$(export LC_CTYPE=C; cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold 
 
 docker run --rm -it \
   --network dcc_dcc-net \
-  oryd/hydra:v1.0.8 \
+  oryd/hydra:v1.10.6 \
   clients create \
     --endpoint http://oauth-server:4445 \
     --callbacks ${callback_url} \
