@@ -70,3 +70,32 @@ Configure this provisioning to talk to the REST API on `http://mailman-core:8001
 <img src="https://raw.githubusercontent.com/cosmic-explorer/ce-it-infrastructure/master/mail/configure-provisioning-target.png" width="275">
 
 Once this is set up, lists can be created and deleted with the email lists feature in COmanage.
+
+After setting up the first mailing list, set up templates for the subscription and footer notices. First create a directory for the site wide templates. From the container host machine:
+```sh
+cd /srv/docker/mailman/core/var/templates/
+mkdir -p site/en
+cd site/en
+```
+In this directory, create a file called `list:member:generic:footer.txt` containing the text
+```
+_______________________________________________
+$display_name mailing list -- $listname
+To manage subscriptions visit https://roster.np3m.org/registry/co_groups/select/co:2
+```
+Then create a file called `list:user:notice:welcome.txt` containing
+```
+Welcome to the "$display_name" mailing list!
+
+To post to this list, send your email to:
+
+  $listname
+
+To manage your NP3M mailing list subscriptions visit the page
+
+  https://roster.np3m.org/registry/co_groups/select/co:2
+
+Checking the "Member" box subscribes you and unchecking the "Member" box
+removes you from a mailing list. Click "Save" at the bottom of the page
+after making any changes.
+```
