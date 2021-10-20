@@ -17,7 +17,7 @@ const checkToken = async token => {
   const json = await response.json()
 
   if (json['active'] !== true) throw new Error('Token not authorized')
-  if (json['token_type'] !== 'access_token') throw new Error('Token is not access token')
+  if (json['token_use'] !== 'access_token') throw new Error('Token is not access token')
 
   console.log('Authorized connection from ' + json['sub'])
 }
