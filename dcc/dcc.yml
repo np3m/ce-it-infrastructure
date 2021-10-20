@@ -64,6 +64,7 @@ services:
             - LOG_LEVEL=debug
             - SERVE_ADMIN_TLS_ALLOW_TERMINATION_FROM=172.30.101.0/24
             - SERVE_PUBLIC_TLS_ALLOW_TERMINATION_FROM=172.30.101.0/24
+            - SERVE_TLS_ALLOW_TERMINATION_FROM=172.30.101.0/24
             - TTL_REFRESH_TOKEN=-1
         networks:
             - dcc-net
