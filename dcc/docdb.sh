@@ -13,7 +13,7 @@ ALTER TABLE \`SecurityGroup\` MODIFY Name CHAR(64);
 DELETE FROM \`SecurityGroup\` WHERE GroupID <> 1 AND GroupID <> 3;
 INSERT INTO \`SecurityGroup\` VALUES(2, 'CO:admins', 'Administrators', CURRENT_TIMESTAMP, 1, 1, 1, 1, '1');
 INSERT INTO \`SecurityGroup\` VALUES(4, 'CO:COU:PrincipalInvestigators:members:active', 'NP3M PIs and CoPIs', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
-INSERT INTO \`SecurityGroup\` VALUES(5, 'CO:COU:NP3M:members:all', 'NP3M Members', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
+INSERT INTO \`SecurityGroup\` VALUES(5, 'CO:members:active', 'NP3M Members', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
 INSERT INTO \`SecurityGroup\` VALUES(6, 'NSF', 'NP3M NSF Program Officers', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
 INSERT INTO \`SecurityGroup\` VALUES(7, 'NP3MAdvisoryBoard', 'NP3M Advisory Committee', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
 INSERT INTO \`SecurityGroup\` VALUES(8, 'CO:COU:SeniorInvestigators:members:active', 'NP3M Senior Investigators', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
