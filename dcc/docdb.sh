@@ -9,15 +9,15 @@ MYSQL_DOCDBRO_PASSWD=$(cat /run/secrets/mysql_docdbro_passwd)
 if [ ! -f /var/lib/mysql/docdb.init ] ; then
 mysql -u root << EOF
 USE dcc_docdb;
+ALTER TABLE \`SecurityGroup\` MODIFY Name CHAR(64);
 DELETE FROM \`SecurityGroup\` WHERE GroupID <> 1 AND GroupID <> 3;
 INSERT INTO \`SecurityGroup\` VALUES(2, 'CO:admins', 'Administrators', CURRENT_TIMESTAMP, 1, 1, 1, 1, '1');
-INSERT INTO \`SecurityGroup\` VALUES(4, 'NP3MPIs', 'NP3M PIs and CoPIs', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
-INSERT INTO \`SecurityGroup\` VALUES(5, 'NP3M', 'NP3M Members', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
+INSERT INTO \`SecurityGroup\` VALUES(4, 'CO:COU:PrincipalInvestigators:members:active', 'NP3M PIs and CoPIs', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
+INSERT INTO \`SecurityGroup\` VALUES(5, 'CO:COU:NP3M:members:all', 'NP3M Members', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
 INSERT INTO \`SecurityGroup\` VALUES(6, 'NSF', 'NP3M NSF Program Officers', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
 INSERT INTO \`SecurityGroup\` VALUES(7, 'NP3MAdvisoryBoard', 'NP3M Advisory Committee', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
-INSERT INTO \`SecurityGroup\` VALUES(8, 'NP3MSIs', 'NP3M Senior Investigators', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
-INSERT INTO \`SecurityGroup\` VALUES(9, 'NP3MCollaborators', 'NP3M Collaborators', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
-INSERT INTO \`SecurityGroup\` VALUES(10, 'NP3MPostdocs', 'NP3M Postdocs', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
+INSERT INTO \`SecurityGroup\` VALUES(8, 'CO:COU:SeniorInvestigators:members:active', 'NP3M Senior Investigators', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
+INSERT INTO \`SecurityGroup\` VALUES(9, 'CO:COU:Postdocs:members:active', 'NP3M Collaborators', CURRENT_TIMESTAMP, 1, 0, 1, 0, '1');
 DELETE FROM \`GroupHierarchy\`;
 INSERT INTO \`GroupHierarchy\` VALUES(1, 101, 100, CURRENT_TIMESTAMP);
 INSERT INTO \`GroupHierarchy\` VALUES(2, 102, 100, CURRENT_TIMESTAMP);
@@ -43,7 +43,7 @@ INSERT INTO \`Institution\` VALUES(17, 'RIT', 'Rochester Institute of Technology
 INSERT INTO \`Institution\` VALUES(18, 'Cal', 'University of California, Berkeley', CURRENT_TIMESTAMP);
 INSERT INTO \`Institution\` VALUES(19, 'UW', 'University of Washington', CURRENT_TIMESTAMP);
 INSERT INTO \`Institution\` VALUES(20, 'TUD', 'Technical University Darmstadt', CURRENT_TIMESTAMP);
-INSERT INTO \`Institution\` VALUES(21, 'Hann', 'AEI Hannover', CURRENT_TIMESTAMP);
+INSERT INTO \`Institution\` VALUES(21, 'Hann', 'Max Planck Institute For Gravitational Physics Hannover', CURRENT_TIMESTAMP);
 INSERT INTO \`Institution\` VALUES(22, 'Soton', 'University of Southhampton', CURRENT_TIMESTAMP);
 INSERT INTO \`Institution\` VALUES(23, 'Jena', 'University Jena', CURRENT_TIMESTAMP);
 INSERT INTO \`Institution\` VALUES(24, 'Wupp', 'Universitat of Wuppertal', CURRENT_TIMESTAMP);
