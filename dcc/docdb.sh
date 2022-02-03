@@ -103,6 +103,7 @@ INSERT INTO \`Topic\` VALUES(30, 'High-Temperature WG', 'High-Temperature WG', C
 INSERT INTO \`Topic\` VALUES(31, 'Multi-Messenger WG', 'Multi-Messenger WG', CURRENT_TIMESTAMP);
 INSERT INTO \`Topic\` VALUES(32, 'Simulations WG', 'Simulations WG', CURRENT_TIMESTAMP);
 INSERT INTO \`Topic\` VALUES(33, 'FRIB-GW WG', 'FRIB-GW WG', CURRENT_TIMESTAMP);
+INSERT INTO \`Topic\` VALUES(34, 'Hiring', 'Hiring', CURRENT_TIMESTAMP);
 DELETE FROM \`TopicHierarchy\`;
 INSERT INTO \`TopicHierarchy\` VALUES (1, 4, 1, CURRENT_TIMESTAMP);
 INSERT INTO \`TopicHierarchy\` VALUES (2, 5, 1, CURRENT_TIMESTAMP);
@@ -133,6 +134,7 @@ INSERT INTO \`TopicHierarchy\` VALUES (26, 30, 29, CURRENT_TIMESTAMP);
 INSERT INTO \`TopicHierarchy\` VALUES (27, 31, 29, CURRENT_TIMESTAMP);
 INSERT INTO \`TopicHierarchy\` VALUES (28, 32, 29, CURRENT_TIMESTAMP);
 INSERT INTO \`TopicHierarchy\` VALUES (29, 33, 29, CURRENT_TIMESTAMP);
+INSERT INTO \`TopicHierarchy\` VALUES (30, 34, 1, CURRENT_TIMESTAMP);
 EOF
 mysql -u root << EOF
 GRANT USAGE ON *.* TO 'docdbrw'@'%';
