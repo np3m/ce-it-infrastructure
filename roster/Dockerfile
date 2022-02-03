@@ -17,7 +17,7 @@ RUN chmod +x /etc/cron.daily/restart-apache
 
 RUN /bin/echo -e "\n\
 [program:cron]\n\
-command=/usr/sbin/cron -n -s\n\
+command=/usr/sbin/cron -f\n\
 stdout_logfile=/dev/stdout\n\
 stdout_logfile_maxbytes=0\n\
 stderr_logfile=/dev/stderr\n\
