@@ -13,6 +13,6 @@ stdout_logfile_maxbytes=0\n\
 stderr_logfile=/dev/stderr\n\
 stderr_logfile_maxbytes=0\n" >> /usr/local/etc/supervisord.conf
 
-RUN sed -i -e "s/REQUIRE_SHIB_ATTR_MAIL/Require shib-attr mail dabrown@syr.edu/g" /usr/local/apache2/conf/httpd.conf
+RUN sed -i -e "s/REQUIRE_SHIB_ATTR_MAIL/Require shib-attr mail dabrown@syr.edu\nRequire shib-attr mail horowit@indiana.edu\nRequire shib-attr mail dur566@psu.edu\nRequire shib-attr mail cratti@uh.edu\nRequire shib-attr mail awsteiner@utk.edu\n/g" /usr/local/apache2/conf/httpd.conf
 
 ENTRYPOINT ["/usr/bin/supervisord", "-c", "/usr/local/etc/supervisord.conf"]
