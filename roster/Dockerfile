@@ -15,12 +15,12 @@ RUN cd /srv/comanage-registry && \
 COPY restart-apache /etc/cron.daily/restart-apache
 RUN chmod +x /etc/cron.daily/restart-apache
 
-RUN echo -e '\
-[program:cron]\
-command=/usr/sbin/cron -n\
-stdout_logfile=/dev/stdout\
-stdout_logfile_maxbytes=0\
-stderr_logfile=/dev/stderr\
-stderr_logfile_maxbytes=0' >> /usr/local/etc/supervisord.conf
+RUN /bin/echo -e '\\n\
+[program:cron]\\n\
+command=/usr/sbin/cron -n\\n\
+stdout_logfile=/dev/stdout\\n\
+stdout_logfile_maxbytes=0\\n\
+stderr_logfile=/dev/stderr\\n\
+stderr_logfile_maxbytes=0\\n' >> /usr/local/etc/supervisord.conf
 
 ENTRYPOINT ["/usr/bin/supervisord", "-c", "/usr/local/etc/supervisord.conf"]
