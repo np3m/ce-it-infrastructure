@@ -1,6 +1,6 @@
 FROM cosmicexplorer/mailman-core-apache-shib:1
 
-RUN apt-get -y install cron
+RUN apt-get -y install cron openssl
     
 COPY restart-apache /etc/cron.daily/restart-apache
 RUN chmod +x /etc/cron.daily/restart-apache
