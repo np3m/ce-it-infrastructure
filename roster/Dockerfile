@@ -15,7 +15,7 @@ RUN cd /srv/comanage-registry && \
 COPY restart-apache /etc/cron.daily/restart-apache
 RUN chmod +x /etc/cron.daily/restart-apache
 
-RUN echo -e "\n\
+RUN /bin/echo -e "\n\
 [program:cron]\n\
 command=/usr/sbin/cron -n\n\
 stdout_logfile=/dev/stdout\n\
