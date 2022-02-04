@@ -23,4 +23,10 @@ stdout_logfile_maxbytes=0\n\
 stderr_logfile=/dev/stderr\n\
 stderr_logfile_maxbytes=0\n" >> /usr/local/etc/supervisord.conf
 
+COPY lang.php /srv/comanage-registry/app/Lib/lang.php
+RUN chmod 664 /srv/comanage-registry/app/Lib/lang.php
+
+COPY CoRestDccProvisionerTarget.php /srv/comanage-registry/app/AvailablePlugin/RestDccProvisioner/Model/CoRestDccProvisionerTarget.php
+RUN chmod 644 /srv/comanage-registry/app/AvailablePlugin/RestDccProvisioner/Model/CoRestDccProvisionerTarget.php
+
 ENTRYPOINT ["/usr/bin/supervisord", "-c", "/usr/local/etc/supervisord.conf"]
