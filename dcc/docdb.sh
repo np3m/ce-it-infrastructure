@@ -57,6 +57,7 @@ INSERT INTO \`Institution\` VALUES(30, 'ORNL', 'Oak Ridge National Laboratory', 
 INSERT INTO \`Institution\` VALUES(31, 'INFN', 'INFN', CURRENT_TIMESTAMP);
 INSERT INTO \`Institution\` VALUES(32, 'Trento', 'University of Trento', CURRENT_TIMESTAMP);
 INSERT INTO \`Institution\` VALUES(33, 'FIU', 'Florida International University', CURRENT_TIMESTAMP);
+INSERT INTO \`Institution\` VALUES(34, 'UmassDart', 'University of Massachusetts Dartmouth', CURRENT_TIMESTAMP);
 DELETE FROM \`AuthorGroupDefinition\`;
 INSERT INTO \`AuthorGroupDefinition\` VALUES(1, 'NP3MPIs', 'NP3M PIs');
 INSERT INTO \`AuthorGroupDefinition\` VALUES(2, 'NP3M', 'NP3M');
