@@ -81,7 +81,7 @@ sudo openssl genrsa -out ${STORAGE_PATH}/dkim/dkim_private.pem 2048
 sudo cp ${STORAGE_PATH}/dkim/dkim_private.pem ${STORAGE_PATH}/core/var/dkim
 sudo chown -R 102 ${STORAGE_PATH}/dkim
 sudo chmod 700 ${STORAGE_PATH}/dkim
-sudo chown -R 102 ${STORAGE_PATH}/core/var/dkim
+sudo chown -R 101 ${STORAGE_PATH}/core/var/dkim
 DKIM_PUBKEY=$(sudo openssl rsa -in ${STORAGE_PATH}/dkim/dkim_private.pem -pubout -outform der 2>/dev/null | openssl base64 -A)
 echo "--- BEGIN DKIM PUBLIC KEY ---"
 echo "v=DKIM1; k=rsa; p=${DKIM_PUBKEY}"
