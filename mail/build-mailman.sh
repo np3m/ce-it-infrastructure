@@ -78,7 +78,7 @@ sudo cp mailman-extra.cfg ${STORAGE_PATH}/core/mailman-extra.cfg
 sudo mkdir -p ${STORAGE_PATH}/core/var/dkim
 sudo openssl genrsa -out ${STORAGE_PATH}/core/var/dkim/dkim_private.pem 2048
 sudo DKIM_PUBKEY=$(openssl rsa -in dkim_private.pem -pubout -outform der 2>/dev/null | openssl base64 -A)
-sudo chown -R 101 ${STORAGE_PATH}/core/var/dkim
+sudo chown -R 102 ${STORAGE_PATH}/core/var/dkim
 DKIM_PUBKEY=$(sudo openssl rsa -in dkim_private.pem -pubout -outform der 2>/dev/null | openssl base64 -A)
 echo "--- BEGIN DKIM PUBLIC KEY ---"
 echo "v=DKIM1; k=rsa; p=${DKIM_PUBKEY}"
